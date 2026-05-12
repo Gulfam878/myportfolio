@@ -399,8 +399,6 @@ const PORTFOLIO_DATA = {
 };
 
 // Smart response generation using portfolio data
-// Smart response generation using portfolio data
-// Smart response generation using portfolio data
 function getSmartResponse(input: string): string {
   const lower = input.toLowerCase();
   

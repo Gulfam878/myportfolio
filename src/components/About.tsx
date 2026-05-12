@@ -1434,7 +1434,7 @@ export default function About() {
               {/* Contact quick info */}
               <StaggerContainer className="grid grid-cols-2 gap-3" staggerDelay={0.05}>
                 {[
-                  { icon: MapPin, label: "Pakistan", color: "text-rose-400", value: "Lahore, PK" },
+                  { icon: MapPin, label: "Pakistan", color: "text-rose-400", value: "Islamabad, PK" },
                   { icon: Mail, label: "Email", color: "text-blue-400", value: "gulfam@email.com" },
                   { icon: Globe, label: "Work", color: "text-green-400", value: "Remote-friendly" },
                   { icon: Phone, label: "Phone", color: "text-yellow-400", value: "+92 XXX XXXXXXX" },
