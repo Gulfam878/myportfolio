@@ -358,7 +358,7 @@ const EDUCATION = [
     title: "BSc.IET (Information Engineering and Technology)",
     institution: "National Skills University Islamabad",
     period: "2022 — 2026",
-    description: "Dean's List. Senior thesis on real-time collaborative editing algorithms. CGPA: 3.79/4.0.",
+    description: "Android control Pick and Place Objects Robotic arm vehicle. CGPA: 3.79/4.0.",
     color: "text-yellow-400",
     dotColor: "bg-yellow-500",
     ringColor: "border-yellow-500",

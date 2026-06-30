@@ -367,7 +367,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-xs text-muted-foreground mb-0.5">Location</div>
-                    <div className="text-sm text-foreground">Islamabad, Pakistan (Remote-first)</div>
+                    <div className="text-sm text-foreground">Islamabad, Pakistan </div>
                   </div>
                 </div>
 

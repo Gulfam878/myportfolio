@@ -1,159 +1,3 @@
-// import { useRef, useState } from "react";
-// import { motion, useInView, AnimatePresence } from "framer-motion";
-// import { ExternalLink, Github, Star, X } from "lucide-react";
-// import { Badge } from "@/components/ui/badge";
-// import { StaggerContainer, StaggerItem } from "@/components/AnimatedSection";
-
-// const PROJECTS = [
-//   {
-//     title: "Ecommerce Website ",
-//     description: "A full-featured e-commerce platform with real-time inventory, payment processing via Stripe, and an AI-driven product recommendation engine. Built for scale with microservices architecture. ",
-//     longDesc: "ShopSphere handles 50K+ daily active users with sub-100ms response times. The AI recommendation engine uses collaborative filtering and increased average cart value by 23%. Microservices are deployed on AWS ECS with auto-scaling. ",
-//     tags: ["React.js ", "JavaScript ", "MongoDB ", "Node.js ", "Express.js "],
-//     live: "https://shopsphere.demo ",
-//     github: "https://github.com ",
-//     featured: true,
-//     gradient: "from-blue-500/20 to-purple-500/20 ",
-//     borderGlow: "rgba(99,102,241,0.3) ",
-//     emoji: "🛍️ ",
-//   },
-//   {
-//     title: "National Book Foundation's website ",
-//     description: "A modern, responsive website for the National Book Foundation with a focus on user experience and accessibility. Features include a blog, event calendar, and resource library. ",
-//     longDesc: "The website was designed to showcase the foundation's mission and programs while providing an intuitive interface for users. Built with a focus on performance and SEO optimization. ",
-//     tags: ["Next.js ", "JavaScript ", "Tailwind ", "Node.js ", "Express.js ", "MongoDB ", "Framer Motion "],
-//     live: "https://nbf.org.pk/ ",
-//     github: "https://github.com ",
-//     featured: true,
-//     gradient: "from-green-500/20 to-teal-500/20 ",
-//     borderGlow: "rgba(16,185,129,0.3) ",
-//     emoji: "💬 ",
-//   },
-//   {
-//     title: "Author Portal (NBF) ",
-//     description: "An AI content generation dashboard integrating OpenAI, Anthropic, and Google Gemini APIs. Supports bulk content generation, brand voice training, and team collaboration. ",
-//     longDesc: "Luminary AI manages API rate limits across providers with a smart queuing system. The brand voice training uses fine-tuned embeddings to match output style. Processing 2M+ tokens/day across 500+ active teams. ",
-//     tags: ["Next.js ", "JavaScript ", "Tailwind ", "Node.js ", "Express.js ", "MongoDB ", "Framer Motion "],
-//     live: "https://luminary.demo ",
-//     github: "https://github.com ",
-//     featured: true,
-//     gradient: "from-orange-500/20 to-red-500/20 ",
-//     borderGlow: "rgba(245,158,11,0.3) ",
-//     emoji: "✨ ",
-//   },
-//   {
-//     title: "Metro Bus Tracking System (Fyp Student Project) ",
-//     description: "A project management SaaS with Kanban boards, Gantt charts, time tracking, and team analytics. Multi-tenant architecture with role-based access control and white-label support. ",
-//     longDesc: "TaskFlow serves 200+ companies. The multi-tenant database uses row-level security in PostgreSQL. Custom Gantt chart implementation handles 10,000+ tasks without UI lag via virtualized rendering. ",
-//     tags: ["Next.js ", "Prisma ", "PostgreSQL ", "TypeScript ", "GraphQL "],
-//     live: "https://taskflow.demo ",
-//     github: "https://github.com ",
-//     featured: false,
-//     gradient: "from-pink-500/20 to-rose-500/20 ",
-//     borderGlow: "rgba(236,72,153,0.3) ",
-//     emoji: "📋 ",
-//   },
-//   {
-//     title: "Live Books life cycle management system ",
-//     description: "A production-grade REST API gateway with rate limiting, authentication, request routing, analytics, and a self-service developer portal. Handles 5M+ requests per day. ",
-//     longDesc: "Built for a SaaS company with 300+ API partners. The gateway uses Redis for distributed rate limiting with sliding window algorithm. Real-time analytics are streamed via Server-Sent Events to the developer portal. ",
-//     tags: ["Node.js ", "Express ", "Next.js ", "Express.js ", "MongoDB ", "Socket.io "],
-//     live: "https://apigateway.demo ",
-//     github: "https://github.com ",
-//     featured: false,
-//     gradient: "from-cyan-500/20 to-blue-500/20 ",
-//     borderGlow: "rgba(6,182,212,0.3) ",
-//     emoji: "🔗 ",
-//   },
-//   {
-//     title: "Huzaifa Mart (POS System) ",
-//     description: "A headless CMS built for developers with a flexible content modeling system, rich text editor, asset management, webhooks, and auto-generated REST and GraphQL APIs. ",
-//     longDesc: "ContentCMS auto-generates strongly typed SDKs from the content schema. The rich text editor handles collaborative editing via OT (Operational Transformation). Used by 3 agencies managing 40+ client sites. ",
-//     tags: ["Next.js ", "Node.js ", "PostgreSQL ", "TypeScript ", "Prisma "],
-//     live: "https://contentcms.demo ",
-//     github: "https://github.com ",
-//     featured: false,
-//     gradient: "from-violet-500/20 to-purple-500/20 ",
-//     borderGlow: "rgba(139,92,246,0.3) ",
-//     emoji: "📝 ",
-//   },
-// ];
-
-// function ProjectModal({ project, onClose }: { project: typeof PROJECTS[0]; onClose: () => void }) {
-//   return (
-//     <motion.div
-//       initial={{ opacity: 0 }}
-//       animate={{ opacity: 1 }}
-//       exit={{ opacity: 0 }}
-//       onClick={onClose}
-//       // Crucial: perspective enables true 3D rotation
-//       className="fixed inset-0 z-[200] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-//       style={{ perspective: "1500px" }}
-//     >
-//       <motion.div
-//         // Door-swing entrance/exit
-//         initial={{ rotateY: -100, opacity: 0, scale: 0.85 }}
-//         animate={{ rotateY: 0, opacity: 1, scale: 1 }}
-//         exit={{ rotateY: 100, opacity: 0, scale: 0.85 }}
-//         transition={{ type: "spring", stiffness: 320, damping: 22, mass: 0.9 }}
-//         // Hinge point on the left edge
-//         style={{ transformOrigin: "left center", transformStyle: "preserve-3d" }}
-//         onClick={(e) => e.stopPropagation()}
-//         className="w-full max-w-lg rounded-2xl border border-border bg-card p-7 shadow-2xl relative overflow-hidden"
-//       >
-//         {/* Depth shadow during swing */}
-//         <motion.div
-//           initial={{ opacity: 0.4 }}
-//           animate={{ opacity: 0.15 }}
-//           transition={{ duration: 0.4 }}
-//           className="absolute inset-0 rounded-2xl bg-gradient-to-l from-black/30 to-transparent pointer-events-none"
-//         />
-        
-//         <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-30`} />
-//         <button
-//           onClick={onClose}
-//           className="absolute top-4 right-4 p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer z-20"
-//         >
-//           <X className="w-4 h-4" />
-//         </button>
-        
-//         <div className="relative z-10">
-//           <div className="text-3xl mb-3">{project.emoji}</div>
-//           <h3 className="text-2xl font-bold mb-1">{project.title}</h3>
-//           <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{project.longDesc}</p>
-//           <div className="flex flex-wrap gap-2 mb-6">
-//             {project.tags.map((tag) => (
-//               <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-primary/15 text-primary font-mono border border-primary/20">
-//                 {tag}
-//               </span>
-//             ))}
-//           </div>
-//           <div className="flex gap-3">
-//             <a
-//               href={project.live}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
-//             >
-//               <ExternalLink className="w-4 h-4" /> Live Demo
-//             </a>
-//             <a
-//               href={project.github}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-border text-sm font-semibold hover:border-primary/50 hover:bg-primary/5 transition-colors"
-//             >
-//               <Github className="w-4 h-4" /> Source Code
-//             </a>
-//           </div>
-//         </div>
-//       </motion.div>
-//     </motion.div>
-//   );
-// }
-
-
-
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
@@ -222,18 +66,18 @@ const PROJECTS = [
     borderGlow: "rgba(6,182,212,0.3) ",
     emoji: "🔗 ",
   },
-  {
-    title: "Huzaifa Mart (POS System) ",
-    description: "A headless CMS built for developers with a flexible content modeling system, rich text editor, asset management, webhooks, and auto-generated REST and GraphQL APIs. ",
-    longDesc: "ContentCMS auto-generates strongly typed SDKs from the content schema. The rich text editor handles collaborative editing via OT (Operational Transformation). Used by 3 agencies managing 40+ client sites. ",
-    tags: ["Next.js ", "Node.js ", "PostgreSQL ", "TypeScript ", "Prisma "],
-    live: "https://contentcms.demo ",
-    github: "https://github.com ",
-    featured: false,
-    gradient: "from-violet-500/20 to-purple-500/20 ",
-    borderGlow: "rgba(139,92,246,0.3) ",
-    emoji: "📝 ",
-  },
+  // {
+  //   title: "Huzaifa Mart (POS System) ",
+  //   description: "A headless CMS built for developers with a flexible content modeling system, rich text editor, asset management, webhooks, and auto-generated REST and GraphQL APIs. ",
+  //   longDesc: "ContentCMS auto-generates strongly typed SDKs from the content schema. The rich text editor handles collaborative editing via OT (Operational Transformation). Used by 3 agencies managing 40+ client sites. ",
+  //   tags: ["Next.js ", "Node.js ", "PostgreSQL ", "TypeScript ", "Prisma "],
+  //   live: "https://contentcms.demo ",
+  //   github: "https://github.com ",
+  //   featured: false,
+  //   gradient: "from-violet-500/20 to-purple-500/20 ",
+  //   borderGlow: "rgba(139,92,246,0.3) ",
+  //   emoji: "📝 ",
+  // },
 ];
 
 function ProjectModal({ project, onClose }: { project: typeof PROJECTS[0]; onClose: () => void }) {
